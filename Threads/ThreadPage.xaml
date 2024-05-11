@@ -1,0 +1,43 @@
+﻿<Window x:Class="Threads.ThreadPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Threads" Height="500" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="90*" />
+        </Grid.RowDefinitions>
+        
+        <!-- Input-->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30*" />
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="45*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Įveskite norimą thread skaičių:" FontSize="12" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="16,0,0,0"/>
+            <TextBox Text="{Binding ThreadCountString, UpdateSourceTrigger=LostFocus}" Grid.Column="1"  Margin="8,12,8,12"/>
+            <Button Content="{Binding GenerateText}" Grid.Column="2" Margin="8,12,8,12"  FontSize="12" Command="{Binding GenerateCommand}"/>
+            <TextBlock x:Name ="ErrorMessage" Grid.Column="3" FontSize="12" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="16,0,0,0" Visibility="Hidden" Foreground="Red"/>
+        </Grid>
+        <!-- View Threads-->
+        <Grid Grid.Row="1">
+            <ListView ItemsSource="{Binding ThreadsInfo}" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Num}" Header="ID" Width="Auto"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Message}" Header="Sugeneruota žinutė" Width="Auto"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            
+            
+
+        </Grid>
+    </Grid>
+</Window>
